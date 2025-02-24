@@ -1,0 +1,117 @@
+header {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+header a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+header a:hover {
+    color: #fff;
+    background-color: #4a90e2;
+}
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.about-us h1, .about-us h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.about-us p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+/* Footer Styling */
+footer {
+    width: 100%;
+    background-color: black;
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    color: white;
+    display: flex;
+    box-shadow: 0 30px 50px #dbdbdb;
+    flex-direction: column; /* For vertical alignment of footer content */
+    align-items: center; /* Center footer content horizontally */
+    padding: 0.5px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Distribute space around items */
+    width: 100%; /* Limit width for better layout */
+    max-width: 1200px; /* Set a maximum width */
+    margin-bottom: 5px; /* Add some space below content */
+    align-items: center; /* Vertically center content */
+    margin: 0 auto;
+}
+
+.social-links,
+.contact-info,
+.copyright {
+    display: flex;
+    align-items: center; /* Vertically center content */
+}
+
+.social-links a {
+    margin: 0 10px;
+    color: #eee; /* Light color for social icons */
+    font-size: 1.2em; /* Make icons a bit larger */
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #4a90e2; /* Change color on hover */
+}
+
+.contact-info a {
+    color: #eee;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #4a90e2;
+}
+
+.copyright p {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-links, 
+    .contact-info, 
+    .copyright {
+        margin-bottom: 10px;
+    }
+}
