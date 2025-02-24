@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloMate - Connect & Discover</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Thin scrollbar for WebKit browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        header, footer {
+            width: 100%;
+            background-color: rgba(100, 181, 246, 0.8);
+            padding: 15px 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header a, footer a {
+            margin: 0 15px;
+            color: whitesmoke;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        header a:hover, footer a:hover {
+            color: #fff;
+            background-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 120px 5% 60px;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .hero-content {
+            text-align: center;
+            grid-column: 2;
+        }
+
+        .hero-heading {
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 30px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s, background-color 0.3s;
+            margin-top: 30px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            background-color: #357abd;
+        }
+
+        .phone-mockups {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 200px;
+            position: relative;
+            grid-column: 1;
+            grid-row: 1;
+            margin-bottom: 1px;
+            margin-top: 5px;
+        }
+
+        .phone {
+            border: 2px solid #333;
+            border-radius: 40px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4a90e2;
+        }
+
+        .copyright {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #4a90e2;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .phone-mockups {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .hero-content {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="Hello.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="info.html">About Us</a>
+            <a href="features.html">Features</a>
+        </nav>
+    </header>
+    
+    <main class="hero">
+        <div class="phone-mockups">
+            <div class="phone">
+                <img src="assets/logo2.jpg" alt="HelloMate App Interface">
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h2 class="hero-heading">Connecting you with the best Services!</h2>
+            <a href="index.html" class="cta-button">Explore some of our Goods & Services</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/hello-mate6/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/HelloMateOfficial" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/official_hellomate?igsh=ZHYydnpoY3hpYjhj&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 HelloMate. All rights reserved.</p>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:contact@hellomate.com">contact@hellomate.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare."></script>

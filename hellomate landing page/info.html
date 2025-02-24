@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HelloMate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Thin scrollbar for WebKit browsers (Chrome, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        header, footer {
+            width: 100%;
+            background-color: rgba(100, 181, 246, 0.8);
+            padding: 15px 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header a, footer a {
+            margin: 0 15px;
+            color: whitesmoke;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        header a:hover, footer a:hover {
+            color: #fff;
+            background-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 40px;
+            width: 80%;
+            max-width: 960px;
+            margin: 40px auto;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            text-align: left;
+            width: 100%;
+        }
+
+        h2 {
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 10px;
+        }
+
+        main p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .value-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .value-card h3 {
+            color: #4a90e2;
+            margin-bottom: 10px;
+        }
+
+        /* Updated footer styles to match features.html */
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #4a90e2;
+        }
+
+        .copyright {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #4a90e2;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="Hello.html">Home</a>
+        <a href="contact.html">Contact</a>
+        <a href="info.html">About Us</a>
+        <a href="features.html">Features</a>
+    </nav>
+</header>
+
+<main>
+    <div class="section">
+        <h2>Welcome to HelloMate</h2>
+        <p>HelloMate is your trusted neighborhood connection platform, bringing together local service providers, businesses, and residents to create stronger, more vibrant communities. We understand that the heart of any thriving neighborhood lies in its local connections and services.</p>
+    </div>
+
+    <div class="section">
+        <h2>Our Mission</h2>
+        <p>At HelloMate, we're on a mission to revolutionize how communities connect and grow together. We believe that every neighborhood deserves easy access to quality local services and that every local business deserves the opportunity to thrive. Through our innovative platform, we're breaking down barriers and building bridges between service providers and residents.</p>
+    </div>
+
+    <div class="section">
+        <h2>Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Community First</h3>
+                <p>We prioritize the needs of our local communities, ensuring that every decision we make contributes to neighborhood growth and prosperity.</p>
+            </div>
+            <div class="value-card">
+                <h3>Trust & Reliability</h3>
+                <p>We maintain high standards for our service providers and facilitate transparent, trustworthy connections between businesses and residents.</p>
+            </div>
+            <div class="value-card">
+                <h3>Innovation</h3>
+                <p>We continuously improve our platform to make finding and connecting with local services as seamless as possible.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Our Story</h2>
+        <p>HelloMate was born from a simple observation: finding reliable local services shouldn't be a challenge. What started as a solution to connect neighbors with trusted service providers has grown into a comprehensive platform that strengthens local economies and builds community bonds.</p>
+        <p>Today, we serve thousands of neighborhoods, helping residents discover and support local businesses while enabling service providers to reach their community effectively. Our journey is just beginning, and we're excited to have you as part of our growing family.</p>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <a href="https://www.linkedin.com/company/hello-mate6/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/HelloMateOfficial" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/official_hellomate?igsh=ZHYydnpoY3hpYjhj&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 HelloMate. All rights reserved.</p>
+        </div>
+        <div class="contact-info">
+            <a href="mailto:contact@hellomate.com">hellomate@gmail.com</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

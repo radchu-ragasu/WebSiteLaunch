@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+
+        header {
+            width: 100%;
+            background-color: rgba(100, 181, 246, 0.8);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header a {
+            margin: 0 15px;
+            color: whitesmoke;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        header a:hover {
+            color: #fff;
+            background-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 500px;
+    background: #fff;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 5px solid #000;
+}
+
+.container .slide .item {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+    border: 3px solid #000;
+}
+        .slide .item:nth-child(1),
+        .slide .item:nth-child(2) {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide .item:nth-child(3) { left: 50%; }
+        .slide .item:nth-child(4) { left: calc(50% + 220px); }
+        .slide .item:nth-child(5) { left: calc(50% + 440px); }
+        .slide .item:nth-child(n + 6) { left: calc(50% + 660px); }
+
+        .item .content {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            width: 300px;
+            text-align: left;
+            color: #fff;
+            transform: translate(0, -50%);
+            display: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide .item:nth-child(2) .content {
+            display: block;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: animate 1s ease-in-out forwards;
+        }
+
+        .content .des {
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: animate 1s 0.3s ease-in-out forwards;
+        }
+
+        .button {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .button button {
+            width: 40px;
+            height: 35px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin: 0 5px;
+            background-color: rgba(100, 181, 246, 0.8);
+            color: white;
+            transition: 0.3s;
+        }
+
+        .button button:hover {
+            background-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #7cc0ff;
+            padding: 15px 0;
+            margin-top: auto;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        .copyright {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+        .des{
+            color: #000;
+            position: relative;
+            width: 200px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+            cursor: pointer;
+            text-align: center;
+        }
+        
+
+        @keyframes animate {
+            from {
+                opacity: 0;
+                transform: translate(0, 20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="Hello.html">Home</a>
+            <a href="contact.html">Contact</a>
+            <a href="info.html">About Us</a>
+            <a href="features.html">Features</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="slide">
+            <div class="item" style="background-image: url(./assets/plumber.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">PLUMBER</h1>
+<div class="des">
+    Plumbing repairs, maintenance, and installations.<br><br>
+    ජලනල අලුත්වැඩියාව, නඩත්තුව සහ ස්ථාපනය.<br><br>
+    பிளம்பிங் பழுது, பராமரிப்பு மற்றும் நிறுவல்கள்.
+</div>                </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/carpenter.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">CARPENTER</h1>
+<div class="des">
+    Custom furniture, home repairs, and installations.<br><br>
+    අභිරුචි ගෘහ භාණ්ඩ, නිවාස අලුත්වැඩියාව සහ ස්ථාපනය කිරීම්.<br><br>
+    தனிப்பயன் தளவாடங்கள், வீட்டு பழுது மற்றும் நிறுவல்கள்.
+</div> </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/mechanic.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">MECHANIC</h1>
+<div class="des">
+    Vehicle repairs and maintenance services.<br><br>
+    වාහන අලුත්වැඩියා සහ නඩත්තු සේවා.<br><br>
+    வாகன பழுது மற்றும் பராமரிப்பு சேவைகள்.
+</div> </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/vegetableshop.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">GREENGROCER</h1>
+                    <div class="des">
+                        Fresh fruits, vegetables, and groceries.<br><br>
+                        නැවුම් පලතුරු, එළවළු සහ සිල්ලර බඩු.<br><br>
+                        புதிய பழங்கள், காய்கறிகள் மற்றும் மளிகை பொருட்கள்.
+                    </div> </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/clothingshop.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">TAILOR</h1>
+                    <div class="des">
+                        Custom clothing and alteration services.<br><br>
+                        අභිරුචි ඇඳුම් සහ වෙනස් කිරීමේ සේවා.<br><br>
+                        தனிப்பயன் ஆடைகள் மற்றும் மாற்றும் சேவைகள்.
+                    </div> </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/tutor.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">TUTOR</h1>
+<div class="des">
+    Personalized academic tutoring services.<br><br>
+    පුද්ගලික අධ්‍යාපනික උපකාරක සේවා.<br><br>
+    தனிப்பயன் கல்வி பயிற்சி.</div>  </div>
+            </div>
+            <div class="item" style="background-image: url(./assets/gardner.jpeg);">
+                <div class="content">
+                    <h1>GARDENER</h1>
+                    <div class="des">
+                        Garden maintenance and landscaping services.<br><br>
+                        උද්‍යාන නඩත්තු සහ භූමි අලංකරණ සේවා.<br><br>
+                        தோட்ட பராமரிப்பு மற்றும் நிலப்பரப்பு சேவைகள்.
+                    </div></div>
+            </div>
+            <div class="item" style="background-image: url(./assets/baker.jpeg);">
+                <div class="content">
+                    <h1 style="text-align: justify;">BAKER</h1>
+                    <div class="des">
+                        Freshly baked goods and custom cakes.<br><br>
+                        නැවුම් බේක් කළ භාණ්ඩ සහ අභිරුචි කේක්.<br><br>
+                        புதிதாக சுடப்பட்ட பொருட்கள் மற்றும் தனிப்பயன் கேக்குகள்.
+                    </div></div>
+            </div>
+        </div>
+
+        <div class="button">
+            <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/hello-mate6/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/HelloMateOfficial" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/official_hellomate?igsh=ZHYydnpoY3hpYjhj&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">
+                © 2025 HelloMate. All rights reserved.
+            </div>
+            <div class="contact-info">
+                <a href="mailto:hellomate@gmail.com">hellomate@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            let next = document.querySelector('.next');
+            let prev = document.querySelector('.prev');
+            let slide = document.querySelector(".slide");
+            
+            next.addEventListener('click', function(){
+                let items = document.querySelectorAll('.item');
+                slide.appendChild(items[0]);
+                updateActiveSlide();
+            });
+            
+            prev.addEventListener('click', function(){
+                let items = document.querySelectorAll('.item');
+                slide.prepend(items[items.length - 1]);
+                updateActiveSlide();
+            });
+            
+            function updateActiveSlide() {
+                document.querySelectorAll('.item .content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                let activeContent = document.querySelectorAll('.item')[1].querySelector('.content');
+                activeContent.style.display = 'block';
+                
+                let h1Element = activeContent.querySelector('h1');
+                let desElement = activeContent.querySelector('.des');
+                
+                h1Element.style.animation = 'none';
+                desElement.style.animation = 'none';
+                
+                h1Element.offsetHeight;
+                
+                h1Element.style.animation = 'animate 1s ease-in-out forwards';
+                desElement.style.animation = 'animate 1s 0.3s ease-in-out forwards';
+            }
+            
+            updateActiveSlide();
+        });
+    </script>
+</body>
+</html>
