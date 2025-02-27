@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloMate - Your Neighborhood Connection Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #4a90e2;
+            --primary-light: #64b5f6;
+            --primary-dark: #357abd;
+            --secondary: #2c3e50;
+            --text-dark: #2c3e50;
+            --text-light: #6c7a89;
+            --white: #ffffff;
+            --light-bg: #f4f7fb;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Thin scrollbar for WebKit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Header & Navigation */
+        header {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header a {
+            margin: 0 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        header a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        header a:hover:after {
+            width: 100%;
+            left: 0;
+        }
+
+        header a:hover {
+            color: var(--primary);
+        }
+
+        header a.active {
+            color: var(--primary);
+        }
+
+        header a.active:after {
+            width: 100%;
+            left: 0;
+        }
+
+        .header-cta {
+            background-color: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+        }
+
+        .header-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 144, 226, 0.4);
+        }
+
+        .header-cta:after {
+            display: none;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 160px 20px 100px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            z-index: -1;
+            background: radial-gradient(rgba(74, 144, 226, 0.1) 8%, transparent 8%);
+            background-position: 0 0;
+            background-size: 30px 30px;
+            transform: rotate(30deg);
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin-right: 40px;
+            padding-left: 40px; /* Added padding to move text to the right */
+        }
+
+        .hero-heading {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            margin-left: 20px;
+        }
+
+        .hero-subheading {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            margin-left: 20px;
+
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            margin-left: 20px;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        .hero-image {
+            flex: 0 0 45%;
+            position: relative;
+        }
+
+        .phone-mockups {
+            display: flex;
+            position: relative;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .phone {
+            border: 8px solid var(--secondary);
+            border-radius: 40px;
+            position: relative;
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            width: 600px;
+            height: 600px;
+            transition: var(--transition);
+        }
+
+        .phone:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .phone-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%);
+            pointer-events: none;
+        }
+
+        /* Features Section */
+        #features {
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .features-wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .features-wave svg {
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+
+        .features-wave .shape-fill {
+            fill: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: left;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-bottom: 3px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            background-color: rgba(74, 144, 226, 0.1);
+            height: 70px;
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+        }
+
+        .feature-card h3 {
+            color: var(--text-dark);
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        
+        .multilingual {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--white);
+            padding: 100px 20px;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .about-heading {
+            color: var(--text-dark);
+            margin: 40px 0 20px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .value-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .value-card p {
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+            position: relative;
+        }
+
+        .contact-wave {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .contact-wave svg {
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+
+        .contact-wave .shape-fill {
+            fill: var(--white);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .contact-heading {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .contact-form {
+            display: grid;
+            grid-gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .contact-form label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--text-dark);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .contact-form button {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+        }
+
+        .contact-form button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            padding: 60px 0 20px;
+            margin-top: auto;
+            color: var(--white);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: var(--transition);
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+
+        }
+
+
+        
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-section {
+                flex-direction: column;
+                padding-top: 120px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin-right: 0;
+                margin-bottom: 40px;
+                padding-left: 0; /* Reset padding on smaller screens */
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-heading {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .hero-heading {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card, .value-card {
+                padding: 30px 20px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            header a {
+                margin: 5px;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .phone {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .hero-heading {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            section {
+                padding: 70px 15px;
+            }
+            
+            .contact-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="#home" class="logo">
+                <a href="#home" class="logo"> HelloMate! </a>
+            </a>
+            
+            <a href="#home" class="active">Home</a>
+            <a href="#services">Services</a>
+            <a href="#features">Features</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-heading">Connecting You With The Best Local Services!</h1>
+            <p class="hero-subheading">Discover trusted neighborhood professionals and businesses all in one place. From plumbers to tutors, HelloMate brings quality services right to your doorstep.</p>
+            <a href="https://apps.apple.com/store" class="hero-cta">Download App</a>
+        </div>
+        
+        <div class="hero-image">
+            <div class="phone-mockups">
+                <div class="phone">
+                    <img src="assets/logo2.jpg" alt="HelloMate App Interface">
+                    <div class="phone-highlight"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="features-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="section-container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Discover how HelloMate makes connecting with local services and businesses easier than ever before.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h3>Smart Profile Management</h3>
+                    <p>Create and manage your personalized profile with ease. Showcase your services or preferences, manage your availability, and build your local reputation all in one place.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Service Marketplace</h3>
+                    <p>List and discover local services with rich descriptions, custom pricing options, and real-time availability. Our marketplace makes it simple to showcase what you offer or find what you need.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Trust & Verification</h3>
+                    <p>Build confidence with our comprehensive review system, verified profiles, and quality badges. Every rating and review helps create a more trustworthy community.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search-location"></i>
+                    </div>
+                    <h3>Advanced Search</h3>
+                    <p>Find exactly what you need with powerful search filters, location-based results, and personalized recommendations based on your preferences and past interactions.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Experience worry-free transactions with our integrated payment system. Supporting multiple payment methods with built-in fraud protection and instant notifications.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Get help anytime with our AI-powered chat support system. Instant answers to common questions and seamless escalation to human support when needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HelloMate Services</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            /* Reset and base styles */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Arial', sans-serif;
+            }
+    
+            body {
+                background-color: #f8f9fa;
+            }
+    
+            /* Main services section styling */
+            .services-section {
+                position: relative;
+                padding: 80px 0;
+                background-color: #f8f9fa;
+                overflow: hidden;
+            }
+    
+            .services-wave {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                overflow: hidden;
+                line-height: 0;
+            }
+    
+            .services-wave svg {
+                position: relative;
+                display: block;
+                width: calc(100% + 1.3px);
+                height: 70px;
+            }
+    
+            .services-wave .shape-fill {
+                fill: #FFFFFF;
+            }
+    
+            .section-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+    
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                color: #333;
+            }
+    
+            .section-subtitle {
+                text-align: center;
+                font-size: 1.1rem;
+                margin-bottom: 50px;
+                color: #666;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+    
+            /* Carousel/Slider styling */
+            .container1 {
+                position: relative;
+                max-width: 1000px;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+    
+            .slide {
+                display: flex;
+                transition: 0.5s;
+            }
+    
+            .item {
+                position: relative;
+                min-width: 200px;
+                height: 400px;
+                margin: 0 10px;
+                background-position: center;
+                background-size: cover;
+                border-radius: 15px;
+                overflow: hidden;
+                transition: 0.5s;
+                filter: blur(2px);
+                transform: scale(0.9);
+            }
+    
+            /* Make center slide larger and focused */
+            .slide .item:nth-child(2) {
+                transform: scale(1);
+                filter: blur(0);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            }
+    
+            .content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                color: white;
+                opacity: 0;
+                transition: 0.5s;
+                display: none;
+            }
+    
+            .slide .item:nth-child(2) .content {
+                opacity: 1;
+                display: block;
+            }
+    
+            .content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+                opacity: 0;
+                transform: translateY(50px);
+                transition: 0.5s;
+            }
+    
+            .content .des {
+                font-size: 0.9rem;
+                opacity: 0;
+                transform: translateY(50px);
+                transition: 0.5s;
+            }
+    
+            /* Animation for content */
+            @keyframes animate {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+    
+            /* Button styling */
+            .button {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+    
+            .prev, .next {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: #fff;
+                border: none;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                margin: 0 10px;
+                transition: 0.3s;
+            }
+    
+            .prev:hover, .next:hover {
+                background: #f0f0f0;
+                transform: translateY(-5px);
+            }
+    
+            /* Footer styling */
+            footer {
+                background-color: #333;
+                color: white;
+                padding: 30px 0;
+                margin-top: 60px;
+            }
+    
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+                flex-wrap: wrap;
+            }
+    
+            .social-links a {
+                color: white;
+                font-size: 1.5rem;
+                margin-right: 15px;
+                transition: 0.3s;
+            }
+    
+            .social-links a:hover {
+                color: #ccc;
+            }
+    
+            .copyright {
+                margin: 10px 0;
+            }
+    
+            .contact-info a {
+                color: white;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+    
+            .contact-info a:hover {
+                color: #ccc;
+            }
+    
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .item {
+                    min-width: 280px;
+                    height: 350px;
+                }
+                
+                .section-title {
+                    font-size: 2rem;
+                }
+                
+                .footer-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                
+                .social-links, .copyright, .contact-info {
+                    margin: 10px 0;
+                }
+            }
+    
+            @media (max-width: 480px) {
+                .item {
+                    min-width: 240px;
+                    height: 300px;
+                }
+                
+                .content h1 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section id="services" class="services-section">
+            <div class="services-wave">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+            <div class="section-container" >
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Find skilled professionals for all your needs in our growing service marketplace</p>
+                
+                <div class="container1">
+                    <div class="slide">
+                        <div class="item" style="background-image: url(./assets/plumber.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">PLUMBER</h1>
+                                <div class="des">
+                                    Plumbing repairs, maintenance, and installations.<br><br>
+                                    ජලනල අලුත්වැඩියාව, නඩත්තුව සහ ස්ථාපනය.<br><br>
+                                    பிளம்பிங் பழுது, பராமரிப்பு மற்றும் நிறுவல்கள்.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/carpenter.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">CARPENTER</h1>
+                                <div class="des">
+                                    Custom furniture, home repairs, and installations.<br><br>
+                                    අභිරුචි ගෘහ භාණ්ඩ, නිවාස අලුත්වැඩියාව සහ ස්ථාපනය කිරීම්.<br><br>
+                                    தனிப்பயன் தளவாடங்கள், வீட்டு பழுது மற்றும் நிறுவல்கள்.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/mechanic.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">MECHANIC</h1>
+                                <div class="des">
+                                    Vehicle repairs and maintenance services.<br><br>
+                                    වාහන අලුත්වැඩියා සහ නඩත්තු සේවා.<br><br>
+                                    வாகன பழுது மற்றும் பராமரிப்பு சேவைகள்.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/vegetableshop.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">GROCER</h1>
+                                <div class="des">
+                                    Fresh fruits, vegetables, and groceries.<br><br>
+                                    නැවුම් පලතුරු, එළවළු සහ සිල්ලර බඩු.<br><br>
+                                    புதிய பழங்கள், காய்கறிகள் மற்றும் மளிகை பொருட்கள்.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/clothingshop.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">TAILOR</h1>
+                                <div class="des">
+                                    Custom clothing and alteration services.<br><br>
+                                    අභිරුචි ඇඳුම් සහ වෙනස් කිරීමේ සේවා.<br><br>
+                                    தனிப்பயன் ஆடைகள் மற்றும் மாற்றும் சேவைகள்.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/tutor.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">TUTOR</h1>
+                                <div class="des">
+                                    Personalized academic tutoring services.<br><br>
+                                    පුද්ගලික අධ්‍යාපනික උපකාරක සේවා.<br><br>
+                                    தனிப்பயன் கல்வி பயிற்சி.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/gardner.jpeg);">
+                            <div class="content">
+                                <h1>GARDENER</h1>
+                                <div class="des">
+                                    Garden maintenance and landscaping services.<br><br>
+                                    උද්‍යාන නඩත්තු සහ භූමි අලංකරණ සේවා.<br><br>
+                                    தோட்ட பராமரிப்பு மற்றும் நிலப்பரப்பு சேவைகள்.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(./assets/baker.jpeg);">
+                            <div class="content">
+                                <h1 style="text-align: justify;">BAKER</h1>
+                                <div class="des">
+                                    Freshly baked goods and custom cakes.<br><br>
+                                    නැවුම් බේක් කළ භාණ්ඩ සහ අභිරුචි කේක්.<br><br>
+                                    புதிதாக சுடப்பட்ட பொருட்கள் மற்றும் தனிப்பயன் கேக்குகள்.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="button">
+                        <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </section>
+    
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                let next = document.querySelector('.next');
+                let prev = document.querySelector('.prev');
+                let slide = document.querySelector(".slide");
+                
+                next.addEventListener('click', function(){
+                    let items = document.querySelectorAll('.item');
+                    slide.appendChild(items[0]);
+                    updateActiveSlide();
+                });
+                
+                prev.addEventListener('click', function(){
+                    let items = document.querySelectorAll('.item');
+                    slide.prepend(items[items.length - 1]);
+                    updateActiveSlide();
+                });
+                
+                function updateActiveSlide() {
+                    document.querySelectorAll('.item .content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    let activeContent = document.querySelectorAll('.item')[1].querySelector('.content');
+                    activeContent.style.display = 'block';
+                    
+                    let h1Element = activeContent.querySelector('h1');
+                    let desElement = activeContent.querySelector('.des');
+                    
+                    h1Element.style.animation = 'none';
+                    desElement.style.animation = 'none';
+                    
+                    h1Element.offsetHeight; // Trigger reflow
+                    
+                    h1Element.style.animation = 'animate 1s ease-in-out forwards';
+                    desElement.style.animation = 'animate 1s 0.3s ease-in-out forwards';
+                }
+                
+                // Initialize the slider
+                updateActiveSlide();
+            });
+        </script>
+
+
+
+<section id="about" class="about-section">
+    <div class="about-container">
+        <h2 class="section-title">About HelloMate</h2>
+        <p class="section-subtitle">Bridging local communities and service providers through technology.</p>
+        
+        <div class="about-text">
+            <p>HelloMate was founded with a simple vision: to make it easier for people to discover and connect with trusted local service providers in their neighborhood. We believe that every community has talented individuals whose skills deserve to be recognized and shared.</p>
+        </div>
+        
+        <h3 class="about-heading">Our Mission</h3>
+        <p class="section-subtitle">To create a platform that supports local economies, encourages community connections, and provides accessible services to everyone.</p>
+        
+        <h3 class="about-heading">Our Values</h3>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Trust & Transparency</h3>
+                <p>We build trust through verification processes, honest reviews, and transparent business practices that benefit both service providers and customers.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3>Community Focus</h3>
+                <p>We empower local communities by promoting neighborhood businesses and skilled individuals, strengthening economic resilience at the grassroots level.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3>Accessibility</h3>
+                <p>We design our platform to be inclusive and accessible to users of all backgrounds, with multilingual support and intuitive interfaces.</p>
+            </div>
+            
+           
+        </div>
+        
+        <h3 class="about-heading">Our Story</h3>
+        <p class="section-subtitle">HelloMate was born from a simple observation: finding reliable local services shouldn't be a challenge. What started as a solution to connect neighbors with trusted service providers has grown into a comprehensive platform that strengthens local economies and builds community bonds.
+
+            Today, we help residents discover and support local businesses while enabling service providers to reach their community effectively. Our journey is just beginning, and we're excited to have you as part of our growing family.</p>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="contact-wave">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    
+    <div class="section-container">
+        <div class="contact-container">
+            <h2 class="contact-heading">Get In Touch</h2>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us what you need" required></textarea>
+                </div>
+                
+                <button type="submit">Send Message</button>
+            </form>
+            
+            <div class="contact-info">
+                <p>Prefer to reach us directly?</p>
+                <p>Email: <a href="mailto:hellomate@gmail.com" style="color: #666;">hellomate@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>HelloMate</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Plumber</a></li>
+                    <li><a href="#services">Carpenter</a></li>
+                    <li><a href="#services">Mechanic</a></li>
+                    <li><a href="#services">Tutor</a></li>
+                    <li><a href="#services">All Services</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#help-center">Help Center</a></li>
+                    <li><a href="#safety-guidelines">Safety Guidelines</a></li>
+                    <li><a href="#privacy-policy">Privacy Policy</a></li>
+                    <li><a href="#terms-of-service">Terms of Service</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+            
+            
+            <div class="footer-column">
+                <h3>Download</h3>
+                <ul>
+                    <li><a href="https://apps.apple.com/store">iOS App</a></li>
+                    <li><a href="https://play.google.com/store">Android App</a></li>
+                    <li><a href="#">Business Portal</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/hello-mate6/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/HelloMateOfficial" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/official_hellomate?igsh=ZHYydnpoY3hpYjhj&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+
+
+
+
+                
+            </div>
+            
+            <div class="copyright">
+                © 2025 HelloMate. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+
+
+
+
+    </body>
+    </html>
