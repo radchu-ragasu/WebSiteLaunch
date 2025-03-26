@@ -1410,46 +1410,6 @@
             </div>
         </div>
     </div>
-</section>
-
-<script>
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();  // Prevent form from refreshing the page
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-
-        const requestData = {
-            name: name,
-            email: email,
-            subject: subject,
-            message: message
-        };
-
-        // Sending the POST request to the server
-        fetch('http://localhost:3000/send-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Show success message
-            document.getElementById('form-status').textContent = 'Email sent successfully!';
-            document.getElementById('form-status').style.color = 'green';
-        })
-        .catch(error => {
-            // Show error message
-            document.getElementById('form-status').textContent = 'Error sending email!';
-            document.getElementById('form-status').style.color = 'red';
-        });
-    });
-</script>
-
     
     <style>
         .section-container {
